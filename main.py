@@ -27,7 +27,7 @@ class Country:
             for x in range(xl, xh + 1)
         ]
 
-        self.comletion_date = None
+        self.comletion_date = -1
 
     def is_completed(self) -> bool:
         return all([c.is_completed() for c in self.cities])
@@ -74,7 +74,7 @@ class DaysGoBy:
 
     def check_complitions(self) -> bool:
         for c in self.countries:
-            if c.is_completed() and c.comletion_date == None:
+            if c.is_completed() and c.comletion_date == -1:
                 c.comletion_date = self.days
 
         return all([c.is_completed() for c in self.countries])
@@ -95,9 +95,9 @@ def read_case(lines, current_line, num_lines):
 
 cases = []
 countries_number = 0
-input = open("input.txt", "r")
+input_file = open("input.txt", "r")
 
-lines = input.readlines()
+lines = input_file.readlines()
 
 line = 0
 num = int(lines[line])

@@ -84,11 +84,18 @@ class DaysGoBy:
             self.next_day()
 
 
+def validate_coordinates(xl: int, yl: int, xh: int, yh: int):
+    if xl > xh or yl > yh:
+        raise ValueError("xl > xh or yl > yh")
+    if xl < 0 or yl < 0 or xh < 0 or yh < 0:
+        raise ValueError("xl < 0 or yl < 0 or xh < 0 or yh < 0")
+
 def read_case(lines, current_line, num_lines):
     countries: list[Country] = []
     for i in range(num_lines):
         line: str = lines[current_line + i]
         vals = line.rstrip().split(' ')
+        validate_coordinates(int(vals[1]), int(vals[2]), int(vals[3]), int(vals[4]))
         countries.append(Country(vals[0], int(vals[1]), int(vals[2]), int(vals[3]), int(vals[4])))
     return countries
 

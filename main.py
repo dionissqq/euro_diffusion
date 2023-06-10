@@ -10,11 +10,11 @@ class City:
         self.new_balance = {}
 
     def add_new_balance(self):
-        for k, v in self.new_balance.items():
-            if k in self.balance:
-                self.balance[k] += v
+        for country_name, country_value in self.new_balance.items():
+            if country_name in self.balance:
+                self.balance[country_name] += country_value
             else: 
-                self.balance[k] = v
+                self.balance[country_name] = country_value
         
         self.new_balance = {}
 
@@ -54,21 +54,21 @@ class DaysGoBy:
         for c in self.cities:
             money_to_give = {}
 
-            for k, v in c.balance.items():
-                if v // PART_TO_GIVE > 0:
-                    money_to_give[k] = v // PART_TO_GIVE
+            for country_name, country_value in c.balance.items():
+                if country_value // PART_TO_GIVE > 0:
+                    money_to_give[country_name] = country_value // PART_TO_GIVE
             
-            for k, v in money_to_give.items():
-                if k in c.new_balance:
-                    c.new_balance[k] -= v * len(c.neighbors)
+            for country_name, country_value in money_to_give.items():
+                if country_name in c.new_balance:
+                    c.new_balance[country_name] -= country_value * len(c.neighbors)
                 else:
-                    c.new_balance[k] = -v * len(c.neighbors)
+                    c.new_balance[country_name] = -country_value * len(c.neighbors)
 
                 for n in c.neighbors:
                     if k in n.new_balance:
-                        n.new_balance[k] += v
+                        n.new_balance[country_name] += country_value
                     else:
-                        n.new_balance[k] = v
+                        n.new_balance[country_name] = country_value
 
         for c in self.cities:
             c.add_new_balance()

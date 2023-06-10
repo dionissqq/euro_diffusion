@@ -1,3 +1,6 @@
+STARTING_NUMBER_OF_COINS = 1_000_000
+PART_TO_GIVE = 1000
+
 class City:
     def __init__(self, x: int, y: int, balance: dict):
         self.x = x
@@ -22,7 +25,7 @@ class Country:
     def __init__(self, name: str, xl: int, yl: int, xh: int, yh: int):
         self.name = name
         self.cities = [
-            City(x, y, {self.name: 1_000_000})
+            City(x, y, {self.name: STARTING_NUMBER_OF_COINS})
             for y in range(yl, yh + 1)
             for x in range(xl, xh + 1)
         ]
@@ -52,8 +55,8 @@ class DaysGoBy:
             money_to_give = {}
 
             for k, v in c.balance.items():
-                if v // 1000 > 0:
-                    money_to_give[k] = v // 1000
+                if v // PART_TO_GIVE > 0:
+                    money_to_give[k] = v // PART_TO_GIVE
             
             for k, v in money_to_give.items():
                 if k in c.new_balance:

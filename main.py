@@ -45,10 +45,10 @@ class DaysGoBy:
         for country in self.countries:
             for city in country.cities:
                 self.cities.append(city)
-                for country2 in self.countries:
-                    for city2 in country2.cities:
-                        if (abs(city.x - city2.x) + abs(city.y - city2.y)) == 1:
-                            city.neighbors.append(city2)
+                for neighbor_country in self.countries:
+                    for neighbor_city in neighbor_country.cities:
+                        if (abs(city.x - neighbor_city.x) + abs(city.y - neighbor_city.y)) == 1:
+                            city.neighbors.append(neighbor_city)
 
     def next_day(self):
         for c in self.cities:
